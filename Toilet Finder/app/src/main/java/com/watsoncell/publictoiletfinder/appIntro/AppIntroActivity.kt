@@ -1,9 +1,9 @@
 package com.watsoncell.publictoiletfinder.appIntro
 
 import android.os.Bundle
-import android.support.annotation.Nullable
-import android.support.v4.app.Fragment
-import com.github.paolorotolo.appintro.AppIntro2
+import androidx.annotation.Nullable
+import androidx.fragment.app.Fragment
+import com.github.appintro.AppIntro2
 import com.watsoncell.publictoiletfinder.fragments.FragmentPermission
 import com.watsoncell.publictoiletfinder.utils.Constant
 
@@ -24,15 +24,15 @@ class AppIntroActivity : AppIntro2() {
             addSlide(FragmentPermission())
 
         // Hide Skip/Done button.
-        showSkipButton(false)
+        isSkipButtonEnabled = false
 
-        if (Constant.isIntroOpenFromHelp)
+        /*if (Constant.isIntroOpenFromHelp)
             showDoneButton(true)
         else
             showDoneButton(false)
 
 
-        setFadeAnimation()
+        setFadeAnimation()*/
         /*  setZoomAnimation()
           setFlowAnimation()
           setSlideOverAnimation()

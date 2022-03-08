@@ -47,7 +47,7 @@ class AppPreference{
     }
 
     fun getUserName() : String {
-        return preference!!.getString(PREF_USER_NAME,"")
+        return preference!!.getString(PREF_USER_NAME,"")!!
     }
 
     fun addUserEmail(userEmail : String){
@@ -55,7 +55,7 @@ class AppPreference{
     }
 
     fun getUserEmail() : String {
-        return preference!!.getString(PREF_USER_EMAIL,"")
+        return preference!!.getString(PREF_USER_EMAIL,"")!!
     }
 
     fun setLanguage(language : String){
@@ -64,7 +64,7 @@ class AppPreference{
     }
 
     fun getLanguage() : String{
-        return preference!!.getString(PREF_SELECTED_LANG,DEFAULT_LANGUAGE)
+        return preference!!.getString(PREF_SELECTED_LANG,DEFAULT_LANGUAGE)!!
     }
 
     fun setAppIntro(isShown : Boolean){

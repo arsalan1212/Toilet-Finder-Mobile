@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.WindowManager
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
 import com.watsoncell.publictoiletfinder.appIntro.AppIntroActivity
 import com.watsoncell.publictoiletfinder.utils.AppPreference
 import com.watsoncell.publictoiletfinder.utils.LocalHelper

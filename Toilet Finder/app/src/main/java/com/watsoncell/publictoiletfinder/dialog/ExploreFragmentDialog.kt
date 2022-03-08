@@ -2,11 +2,11 @@ package com.watsoncell.publictoiletfinder.dialog
 
 
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.fragment.app.DialogFragment
 import com.watsoncell.publictoiletfinder.R
 
 

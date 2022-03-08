@@ -10,15 +10,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.design.widget.CoordinatorLayout
-import android.support.v4.content.FileProvider
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.content.FileProvider
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeInfoDialog
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
@@ -142,7 +142,9 @@ class ReviewToiletActivity : AppCompatActivity() {
                         .withListener(object : MultiplePermissionsListener {
                             override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
                                 report?.let {
-                                    if (preferences.getUserEmail().isNotEmpty() && preferences.getUserName().isNotEmpty()) {
+                                    if (preferences.getUserEmail()
+                                            .isNotEmpty() && preferences.getUserName().isNotEmpty()
+                                    ) {
 
                                         userEmail = preferences.getUserEmail()
                                         userName = preferences.getUserName()
@@ -167,7 +169,9 @@ class ReviewToiletActivity : AppCompatActivity() {
                         }
                         .check()
                 } else {
-                    if (preferences.getUserEmail().isNotEmpty() && preferences.getUserName().isNotEmpty()) {
+                    if (preferences.getUserEmail().isNotEmpty() && preferences.getUserName()
+                            .isNotEmpty()
+                    ) {
 
                         userEmail = preferences.getUserEmail()
                         userName = preferences.getUserName()
@@ -303,41 +307,43 @@ class ReviewToiletActivity : AppCompatActivity() {
                             ) {
                                 progressDialog.hide()
 
-                                val reviewToiletResponse: ReviewToilet = response.body()!!
+                                response.body()?.let {
+                                    val reviewToiletResponse = it
+                                    if (reviewToiletResponse.success) {
 
-                                if (reviewToiletResponse.success) {
-
-                                    AwesomeSuccessDialog(this@ReviewToiletActivity)
-                                        .setTitle(getString(R.string.str_submit_review))
-                                        .setMessage(getString(R.string.str_review_thank_you))
-                                        .setColoredCircle(R.color.dialogSuccessBackgroundColor)
-                                        .setDialogIconAndColor(
-                                            R.drawable.ic_dialog_info,
-                                            R.color.white
-                                        )
-                                        .setCancelable(false)
-                                        .setPositiveButtonText(getString(R.string.dialog_ok_button))
-                                        .setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor)
-                                        .setPositiveButtonTextColor(R.color.white)
-                                        .setPositiveButtonClick {
-                                            //moving to MainActivity
-                                            val intent = Intent(
-                                                this@ReviewToiletActivity,
-                                                MainActivity::class.java
+                                        AwesomeSuccessDialog(this@ReviewToiletActivity)
+                                            .setTitle(getString(R.string.str_submit_review))
+                                            .setMessage(getString(R.string.str_review_thank_you))
+                                            .setColoredCircle(R.color.dialogSuccessBackgroundColor)
+                                            .setDialogIconAndColor(
+                                                R.drawable.ic_dialog_info,
+                                                R.color.white
                                             )
-                                            intent.flags =
-                                                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                                            startActivity(intent)
-                                            finish()
-                                        }
-                                        .show()
+                                            .setCancelable(false)
+                                            .setPositiveButtonText(getString(R.string.dialog_ok_button))
+                                            .setPositiveButtonbackgroundColor(R.color.dialogSuccessBackgroundColor)
+                                            .setPositiveButtonTextColor(R.color.white)
+                                            .setPositiveButtonClick {
+                                                //moving to MainActivity
+                                                val intent = Intent(
+                                                    this@ReviewToiletActivity,
+                                                    MainActivity::class.java
+                                                )
+                                                intent.flags =
+                                                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                                                startActivity(intent)
+                                                finish()
+                                            }
+                                            .show()
 
-                                } else {
-                                    displayErrorDialog(
-                                        getString(R.string.str_review_not_submitted),
-                                        getString(R.string.str_review_submisson_error)
-                                    )
+                                    } else {
+                                        displayErrorDialog(
+                                            getString(R.string.str_review_not_submitted),
+                                            getString(R.string.str_review_submisson_error)
+                                        )
+                                    }
                                 }
+
                             }
 
                             override fun onFailure(call: Call<ReviewToilet>, t: Throwable) {
@@ -443,7 +449,7 @@ class ReviewToiletActivity : AppCompatActivity() {
     private fun createImageFile(): File {
         // Create an image file name
         val fileName = "toilet"
-        val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
         return File.createTempFile(
             fileName, /* prefix */
             ".jpg", /* suffix */
@@ -542,7 +548,7 @@ class ReviewToiletActivity : AppCompatActivity() {
                     //onLoggedIn(account)
                     //saving login user email and name
 
-                    userEmail = account.email!!
+                    userEmail = account!!.email!!
                     userName = account.displayName!!
 
                     preferences.addUserName(userName!!)

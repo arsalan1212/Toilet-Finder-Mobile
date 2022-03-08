@@ -3,17 +3,17 @@ package com.watsoncell.publictoiletfinder.fragments
 
 import android.inputmethodservice.KeyboardView
 import android.os.Bundle
-import android.support.design.widget.CoordinatorLayout
-import android.support.design.widget.Snackbar
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.fragment.app.Fragment
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeSuccessDialog
+import com.google.android.material.snackbar.Snackbar
 import com.watsoncell.publictoiletfinder.Interface.BackButtonInterface
 import com.watsoncell.publictoiletfinder.MainActivity
 import com.watsoncell.publictoiletfinder.R

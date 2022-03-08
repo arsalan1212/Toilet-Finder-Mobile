@@ -1,9 +1,9 @@
 package com.watsoncell.publictoiletfinder.utils
 
 import android.content.Context
-import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.Toast
+import com.google.android.material.snackbar.Snackbar
 
 
 fun View.snackBar(message: String) {

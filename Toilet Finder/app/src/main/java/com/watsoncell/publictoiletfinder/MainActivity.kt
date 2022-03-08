@@ -6,23 +6,25 @@ import android.content.Intent
 import android.location.LocationManager
 import android.os.Bundle
 import android.provider.Settings
-import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.watsoncell.publictoiletfinder.Interface.BackButtonInterface
 import com.watsoncell.publictoiletfinder.appIntro.AppIntroActivity
@@ -286,7 +288,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         val account = task.getResult(ApiException::class.java)
 
                         //saving login user email and name
-                        preference.addUserName(account.displayName!!)
+                        preference.addUserName(account!!.displayName!!)
                         preference.addUserEmail(account.email!!)
 
                         //for firebase analytics
@@ -295,11 +297,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         params.putString("email", account.email)
                         firebaseAnalytics.logEvent("login_user", params)
 
+                        Log.d("arsalan","name= ${account.displayName} and email= ${account.email}")
+
                         showAddNewToiletOptionDialog()
 
                     } catch (e: ApiException) {
                         // The ApiException status code indicates the detailed failure reason.
                         Log.d("arsalan", "signInResult:failed code=" + e.statusCode)
+                        Snackbar.make(findViewById(R.id.coordinatorLayoutMain),"Exception : ${e.message}",Snackbar.LENGTH_INDEFINITE).show()
                     }
 
                 }

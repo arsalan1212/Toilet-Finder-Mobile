@@ -6,10 +6,6 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.speech.RecognizerIntent
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -17,6 +13,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeProgressDialog
 import com.watsoncell.publictoiletfinder.Interface.SearchToiletListener
 import com.watsoncell.publictoiletfinder.MainActivity
@@ -353,7 +353,7 @@ class SearchCurrentCityToilets : Fragment(), SearchToiletListener {
             if (resultCode == RESULT_OK && null != data) {
 
                 val result: ArrayList<String> = data
-                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)!!
                 if (result.size > 0) {
                     editTextSearch.setText(result.get(0))
                     editTextSearch.setSelection(0, editTextSearch.text.length)

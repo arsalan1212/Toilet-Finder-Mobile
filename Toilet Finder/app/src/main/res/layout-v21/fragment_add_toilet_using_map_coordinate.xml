@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/coordinatorLayoutAddToilet"
@@ -70,7 +70,6 @@
                 android:hint="@string/str_latitude_longitude"
                 android:id="@+id/etToiletLocation"
                 android:imeOptions="actionNext"
-                android:enabled="false"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:fontFamily="@font/font_cairo_regular"
@@ -285,4 +284,4 @@
             android:visibility="gone"
             android:focusableInTouchMode="true"
     />
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

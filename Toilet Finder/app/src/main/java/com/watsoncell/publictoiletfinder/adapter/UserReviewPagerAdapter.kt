@@ -1,13 +1,13 @@
 package com.watsoncell.publictoiletfinder.adapter
 
 import android.content.Context
-import android.support.v4.view.PagerAdapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.viewpager.widget.PagerAdapter
 import com.watsoncell.publictoiletfinder.R
 import com.watsoncell.publictoiletfinder.models.UserReviewModel
 
